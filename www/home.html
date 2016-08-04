@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<head>
+	<title>NIST - Parent Companion</title>
+	<link rel="stylesheet" href="css/icon.css">
+	<link rel="stylesheet" href="css/material.indigo-pink.min.css">
+	<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+	<script src="js/material.min.js"></script>
+	<script src="js/jquery-2.2.4.min.js"></script>
+	<script type="text/javascript" src="js/plotly-latest.min.js"></script>
+	<style type="text/css">
+		body{
+			background-color: #f5f5f5; 
+		}
+		.wid90{
+			width: 90%!important;
+		}
+		.page-content{
+			padding: 10px!important;
+   			}
+   		@media screen and (max-width: 1024px){
+   			.mdl-layout__header .mdl-layout__drawer-button {
+		    margin: 7px!important;
+			}	
+   		}
+   		.mdl-button{
+   			margin: 10px!important;
+   		}
+   		.demo-card-wide.mdl-card {
+		  width: 90%;
+		}
+		.demo-card-wide > .mdl-card__title {
+		  color: #fff;
+		  height: 176px;
+		  background: url('img/bg1.jpg') center / cover;
+		}
+		.demo-card-wide > .mdl-card__menu {
+		  color: #fff;
+		}
+		.menuImg{
+			width: 100px;
+			padding: 10px;
+		}
+		.mdl-card{
+			min-height: 50px;
+		}
+		.modebar
+		{
+			display: none!important;
+		}
+ 	</style>
+ 	<script type="text/javascript">
+ 		if(localStorage.getItem('sem')==null)
+ 		{
+ 			alert("Dear parent welcome to iNist. In this app you can track your ward's attendance, classtest marks, BPUT results and transactions made from the college.")
+ 		}
+ 	</script>
+</head>
+
+<body>
+	<!-- Always shows a header, even in smaller screens. -->
+	<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+	  <header class="mdl-layout__header">
+	    <div class="mdl-layout__header-row">
+	      <!-- Title -->
+	      <span class="mdl-layout-title">iNIST</span>
+	      <!-- Add spacer, to align navigation to the right -->
+	      <div class="mdl-layout-spacer"></div>
+	     </div>
+	  </header>
+	  <div class="mdl-layout__drawer">
+	    <span class="mdl-layout-title">iNsit</span>
+	    <nav class="mdl-navigation">
+	      <a class="mdl-navigation__link" href="attendance.html">Attendance</a>
+	      <a class="mdl-navigation__link" href="internal.html">Marksheet</a>
+	      <a class="mdl-navigation__link" href="dues.html">Transactions</a>
+	      <a class="mdl-navigation__link" href="mail.html">NIST Inbox</a>
+	      <a class="mdl-navigation__link" href="about.html">About</a>
+	      <a class="mdl-navigation__link" id="logout" href="#">Logout</a>
+	    </nav>
+	  </div>
+	  <main class="mdl-layout__content">
+	    <div class="page-content">
+	    	<!-- Accent-colored raised button with ripple -->
+	    	<center>
+	    		<div class="demo-card-wide mdl-card mdl-shadow--2dp">
+				  <div class="mdl-card__title">
+				    <h2 class="mdl-card__title-text" id="welcome" style="background: rgba(0, 0, 0, 0.5);"></h2>
+				  </div>
+				  <div class="mdl-card__supporting-text" id="myText">
+				  </div>				  
+				</div>
+
+				<div class="demo-card-wide mdl-card mdl-shadow--2dp" style="margin-top:10px;">
+				  <div class="mdl-card__actions mdl-card--border">
+				    <img class="menuImg" src="img/attend.png" id="attend"></img>
+				    <img class="menuImg" src="img/test.png" id="internal"></img>
+				    <img class="menuImg" src="img/dues.png" id="dues"></img>
+				    <img class="menuImg" src="img/msg.png" id="msg"></img>
+				  </div>
+				</div>
+
+				<div class="demo-card-wide mdl-card mdl-shadow--2dp" style="margin-top:10px;">
+				  <div class="mdl-card__actions mdl-card--border" style="overflow-x:auto;">
+				    <div id="myAtt" style="min-width: 480px; height: 400px;"></div>
+				  </div>
+				</div>
+				 
+				 <div class="demo-card-wide mdl-card mdl-shadow--2dp" style="margin-top:10px;">
+				  <div class="mdl-card__actions mdl-card--border">
+				    <h4 style="">Recent Transactions</h4><hr/>
+				    <div id="myDues" style="overflow-x:auto;">
+				    	<table class="mdl-data-table mdl-js-data-table" style="width:100%;">
+						  <thead>
+						    <tr>
+						      <th class="mdl-data-table__cell--non-numeric">Type</th>
+						      <th class="mdl-data-table__cell--non-numeric">Status</th>
+						      <th>Amount</th>
+						      <th class="mdl-data-table__cell--non-numeric">Date</th>
+						    </tr>
+						  </thead>
+						  <tbody id="myTable">
+						  </tbody>
+						</table>
+				    </div>
+				  </div>
+				</div>
+
+				<div id="toast" class="mdl-js-snackbar mdl-snackbar">
+				  <div class="mdl-snackbar__text"></div>
+				  <button class="mdl-snackbar__action" type="button"></button>
+				</div>
+				<script type="text/javascript">
+			 		//var name="",status="";
+					function snack(string) {
+					    var snackbarContainer = document.querySelector('#toast');
+					    var data = { message: string, timeout: 2000 };
+					    snackbarContainer.MaterialSnackbar.showSnackbar(data);
+					}
+					$(document).ready(function(){
+					   	var url="http://trashit.hol.es/iNist/index.php?roll="+localStorage.getItem("roll");
+					    //prompt("abc",url);
+					    $.getJSON(url,function(result){
+						  //name=result.name;
+						  //status=result.status; 
+						  var sem = result.sem;
+						  if(sem=="8th")
+						  	localStorage.setItem("sem","eight");
+						  else if(sem=="7th")
+						  	localStorage.setItem("sem","seventh");
+						  else if(sem=="6th")
+						  	localStorage.setItem("sem","sixth");
+						  else if(sem=="5th")
+						  	localStorage.setItem("sem","fifth");
+						  else if(sem=="4th")
+						  	localStorage.setItem("sem","fourth");
+						  else if(sem=="3rd")
+						  	localStorage.setItem("sem","third");
+						  else if(sem=="2nd")
+						  	localStorage.setItem("sem","second");
+						  else if(sem=="1st")
+						  	localStorage.setItem("sem","first");
+						  $("#welcome").html(result.name);
+						  $('#myText').html("<b>Your ward is "+result.status+" with a CGPA of "+result.cgpa+"</b>");
+						});
+
+					    url="http://trashit.hol.es/iNist/index.php?table="+localStorage.getItem("sem")+"&roll="+localStorage.getItem("roll");
+					    var sub=[];
+					    var attend=[];
+					     $.getJSON(url,function(result){
+						       $.each(result, function(i, field){
+							       // Pushing the JSON Data to the array
+							       	sub.push(field.sub);
+							       	attend.push(field.attend);
+							     });
+						      //Assigning X and Y axes to the data var, and plotting the graph.
+						      	var data = [{
+								  x: sub,
+								  y: attend,
+								  type: 'bar'
+								}];
+
+								var annotationContent = [];
+								
+								var layout = {
+								  title: 'Current Sem Attendance',
+								  annotations: annotationContent
+								};
+								for( var i = 0 ; i < sub.length ; i++ ){
+								  var result = {
+								    x: sub[i],
+								    y: attend[i],
+								    text: attend[i],
+								    xanchor: 'center',
+								    yanchor: 'bottom',
+								    showarrow: false
+								  };
+								  annotationContent.push(result);
+								}
+ 								Plotly.newPlot('myAtt', data, layout);
+						 });
+
+						url="http://trashit.hol.es/iNist/index.php?table=dues&roll="+localStorage.getItem("roll");
+						//prompt("test",url);
+						var table = document.getElementById("myTable");
+					     $.getJSON(url,function(result){
+						       $.each(result, function(i, field){
+							       // Pushing the JSON Data to the table
+							       //alert("test");
+							       	var ab = "<tr><td class='mdl-data-table__cell--non-numeric'>"+field.name+"</td>" + 
+							       					"<td class='mdl-data-table__cell--non-numeric'>"+field.status+"</td>" +
+							       					"<td>"+field.amt+"</td>" +
+							       					"<td class='mdl-data-table__cell--non-numeric'>"+field.date+"</td></tr>";
+							       	//alert(ab);
+							       	table.innerHTML +=ab;
+							     });
+						 });
+
+					});
+					$("#logout").click(function(){
+						localStorage.setItem("login","False");
+						snack('Please Wait');
+						window.open("index.html","_self");
+					});
+					$("#attend").click(function(){
+						snack('Please Wait');
+						window.open("attendance.html","_self");
+					});
+					$("#dues").click(function(){
+						snack('Please Wait');
+						window.open("dues.html","_self");
+					});
+					$("#internal").click(function(){
+						snack('Please Wait');
+						window.open("internal.html","_self");
+					});
+					$("#msg").click(function(){
+						snack('Please Wait');
+						window.open("mail.html","_self");
+					});
+				</script>
+	    	</center>
+	    </div>
+	  </main>
+	</div>
+</body>
+</html>

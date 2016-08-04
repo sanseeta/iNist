@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+<head>
+	<title>NIST - Parent Companion</title>
+	<link rel="stylesheet" href="css/icon.css">
+	<link rel="stylesheet" href="css/jquery-ui.css">
+	<link rel="stylesheet" href="css/material.indigo-pink.min.css">
+	<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+	<script src="js/material.min.js"></script>
+	<script src="js/jquery-2.2.4.min.js"></script>
+	<script src="js/jquery-ui.js"></script>
+	<script type="text/javascript" src="js/plotly-latest.min.js"></script>
+	<style type="text/css">
+		body{
+			background-color: #f5f5f5; 
+		}
+		.wid90{
+			width: 90%!important;
+		}
+		.page-content{
+			padding: 10px!important;
+   			}
+   		@media screen and (max-width: 1024px){
+   			.mdl-layout__header .mdl-layout__drawer-button {
+		    margin: 7px!important;
+			}	
+   		}
+   		.mdl-button{
+   			margin: 10px!important;
+   		}
+   		.demo-card-wide.mdl-card {
+		  width: 90%;
+		}
+		.demo-card-wide > .mdl-card__title {
+		  color: #fff;
+		  height: 176px;
+		  background: url('img/bg1.jpg') center / cover;
+		}
+		.demo-card-wide > .mdl-card__menu {
+		  color: #fff;
+		}
+		.menuImg{
+			width: 100px;
+			padding: 10px;
+		}
+		.mdl-card{
+			min-height: 50px;
+		}
+		.modebar
+		{
+			display: none!important;
+		}
+		#mytable1, #mytable2, #mytable3, #mytable4, #mytable5, #mytable6, #mytable7, #mytable8
+		{
+			display: none;
+		}
+		#view1, #view2,#view3, #view4, #view5, #view6, #view7, #view8
+		{
+			overflow-x: auto;
+			display: none;
+		}    
+ 	</style>
+ 	 <script>
+	 $( function() {
+	    $( "#accordion" ).accordion({
+	      heightStyle: "content"
+	    });
+	  } );
+	 $( function() {
+	    $( "#bputAcc" ).accordion({
+	      heightStyle: "content"
+	    });
+	  } );
+	  </script>
+</head>
+
+<body>
+	<!-- Always shows a header, even in smaller screens. -->
+	<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+	  <header class="mdl-layout__header">
+	    <div class="mdl-layout__header-row">
+	      <!-- Title -->
+	      <span class="mdl-layout-title" id="homeGo" >iNIST</span>
+	      <!-- Add spacer, to align navigation to the right -->
+	      <div class="mdl-layout-spacer"></div>
+	     </div>
+	  </header>
+	  <div class="mdl-layout__drawer">
+	    <span class="mdl-layout-title">iNsit</span>
+	    <nav class="mdl-navigation">
+	      <a class="mdl-navigation__link" href="attendance.html">Attendance</a>
+	      <a class="mdl-navigation__link" href="internal.html">Marksheet</a>
+	      <a class="mdl-navigation__link" href="dues.html">Transactions</a>
+	      <a class="mdl-navigation__link" href="mail.html">NIST Inbox</a>
+	      <a class="mdl-navigation__link" href="about.html">About</a>
+	      <a class="mdl-navigation__link" id="logout" href="#">Logout</a>
+	    </nav>
+	  </div>
+	  <main class="mdl-layout__content">
+	    <div class="page-content">
+	    	<!-- Accent-colored raised button with ripple -->
+	    	<center>
+				 <div class="demo-card-wide mdl-card mdl-shadow--2dp" style="margin-top:10px;">
+				  <div class="mdl-card__actions mdl-card--border">
+				    <h4 style="">Attendance Report</h4><hr/>
+				    
+				    <div id="accordion">
+						<h3 id="eightHead">Eight Semester</h3>
+						<div id="eightBox">
+							<div id="table8">
+								<table class="mdl-data-table mdl-js-data-table" style="width:100%;">
+									<thead>
+									   	<tr>
+										   <th class="mdl-data-table__cell--non-numeric">Subject</th>
+										   <th class="mdl-data-table__cell--non-numeric">Percentage</th>
+										</tr>
+									</thead>
+											  <tbody id="myTable8">
+											  </tbody>
+								</table>
+							</div>
+							<button id="myGraph8" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored wid90">
+								Generate Graph
+							</button>
+							<div id="view8">
+								<div id="gra8" style="min-width: 480px; height: 320px;"></div>
+							</div>
+							<button id="mytable8" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored wid90">
+								Generate Table
+							</button>
+						</div>
+						<h3 id="seventhHead">Seventh Semester</h3>
+						<div id="seventhBox">
+							<div id="table7">
+								<table class="mdl-data-table mdl-js-data-table" style="width:100%;">
+									<thead>
+									   	<tr>
+										   <th class="mdl-data-table__cell--non-numeric">Subject</th>
+										   <th class="mdl-data-table__cell--non-numeric">Percentage</th>
+										</tr>
+									</thead>
+											  <tbody id="myTable7">
+											  </tbody>
+								</table>
+							</div>
+							<button id="myGraph7" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored wid90">
+								Generate Graph
+							</button>
+							<div id="view7">
+								<div id="gra7" style="min-width: 480px; height: 320px;"></div>
+							</div>
+							<button id="mytable7" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored wid90">
+								Generate Table
+							</button>
+						</div>
+						<h3 id="sixthHead">Sixth Semester</h3>
+						<div id="sixthBox">
+							<div id="table6">
+								<table class="mdl-data-table mdl-js-data-table" style="width:100%;">
+									<thead>
+									   	<tr>
+										   <th class="mdl-data-table__cell--non-numeric">Subject</th>
+										   <th class="mdl-data-table__cell--non-numeric">Percentage</th>
+										</tr>
+									</thead>
+											  <tbody id="myTable6">
+											  </tbody>
+								</table>
+							</div>
+							<button id="myGraph6" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored wid90">
+								Generate Graph
+							</button>
+							<div id="view6">
+								<div id="gra6" style="min-width: 480px; height: 320px;"></div>
+							</div>
+							<button id="mytable6" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored wid90">
+								Generate Table
+							</button>
+						</div>
+						<h3 id="fifthHead">Fifth Semester</h3>
+						<div id="fifthBox">
+							<div id="table5">
+								<table class="mdl-data-table mdl-js-data-table" style="width:100%;">
+									<thead>
+									   	<tr>
+										   <th class="mdl-data-table__cell--non-numeric">Subject</th>
+										   <th class="mdl-data-table__cell--non-numeric">Percentage</th>
+										</tr>
+									</thead>
+											  <tbody id="myTable5">
+											  </tbody>
+								</table>
+							</div>
+							<button id="myGraph5" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored wid90">
+								Generate Graph
+							</button>
+							<div id="view5">
+								<div id="gra5" style="min-width: 480px; height: 320px;"></div>
+							</div>
+							<button id="mytable5" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored wid90">
+								Generate Table
+							</button>
+						</div>
+						<h3 id="fourthHead">Fourth Semester</h3>
+						<div id="fourthBox">
+							<div id="table4">
+								<table class="mdl-data-table mdl-js-data-table" style="width:100%;">
+									<thead>
+									   	<tr>
+										   <th class="mdl-data-table__cell--non-numeric">Subject</th>
+										   <th class="mdl-data-table__cell--non-numeric">Percentage</th>
+										</tr>
+									</thead>
+											  <tbody id="myTable4">
+											  </tbody>
+								</table>
+							</div>
+							<button id="myGraph4" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored wid90">
+								Generate Graph
+							</button>
+							<div id="view4">
+								<div id="gra4" style="min-width: 480px; height: 320px;"></div>
+							</div>
+							<button id="mytable4" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored wid90">
+								Generate Table
+							</button>
+						</div>
+						<h3 id="thirdHead">Third Semester</h3>
+						<div id="thirdBox">
+							<div id="table3">
+								<table class="mdl-data-table mdl-js-data-table" style="width:100%;">
+									<thead>
+									   	<tr>
+										   <th class="mdl-data-table__cell--non-numeric">Subject</th>
+										   <th class="mdl-data-table__cell--non-numeric">Percentage</th>
+										</tr>
+									</thead>
+											  <tbody id="myTable3">
+											  </tbody>
+								</table>
+							</div>
+							<button id="myGraph3" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored wid90">
+								Generate Graph
+							</button>
+							<div id="view3">
+								<div id="gra3" style="min-width: 480px; height: 320px;"></div>
+							</div>
+							<button id="mytable3" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored wid90">
+								Generate Table
+							</button>
+						</div>
+						<h3 id="secondHead">Second Semester</h3>
+						<div id="secondBox">
+							<div id="table2">
+								<table class="mdl-data-table mdl-js-data-table" style="width:100%;">
+									<thead>
+									   	<tr>
+										   <th class="mdl-data-table__cell--non-numeric">Subject</th>
+										   <th class="mdl-data-table__cell--non-numeric">Percentage</th>
+										</tr>
+									</thead>
+											  <tbody id="myTable2">
+											  </tbody>
+								</table>
+							</div>
+							<button id="myGraph2" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored wid90">
+								Generate Graph
+							</button>
+							<div id="view2">
+								<div id="gra2" style="min-width: 480px; height: 320px;"></div>
+							</div>
+							<button id="mytable2" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored wid90">
+								Generate Table
+							</button>
+						</div>
+						<h3 id="firstHead">First Semester</h3>
+						<div id="firstBox">
+							<div id="table1">
+								<table class="mdl-data-table mdl-js-data-table" style="width:100%;">
+									<thead>
+									   	<tr>
+										   <th class="mdl-data-table__cell--non-numeric">Subject</th>
+										   <th class="mdl-data-table__cell--non-numeric">Percentage</th>
+										</tr>
+									</thead>
+											  <tbody id="myTable1">
+											  </tbody>
+								</table>
+							</div>
+							<button id="myGraph1" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored wid90">
+								Generate Graph
+							</button>
+							<div id="view1">
+								<div id="gra1" style="min-width: 480px; height: 320px;"></div>
+							</div>
+							<button id="mytable1" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored wid90">
+								Generate Table
+							</button>
+						</div>
+					</div>
+
+				  </div>
+				</div>
+				<div id="toast" class="mdl-js-snackbar mdl-snackbar">
+				  <div class="mdl-snackbar__text"></div>
+				  <button class="mdl-snackbar__action" type="button"></button>
+				</div>
+				<script type="text/javascript">
+					$(document).ready(function(){
+						var sem = localStorage.getItem("sem");
+						if(sem=="seventh")
+						{
+							$('#eightBox,#eightHead').css('display','none');
+						}
+						else if(sem=="sixth")
+						{
+							$('#eightBox').css('display','none');
+							$('#eightHead').css('display','none');
+							$('#seventhBox').css('display','none');
+							$('#seventhHead').css('display','none');
+						}
+						else if(sem=="fifth")
+						{
+							$('#eightBox').css('display','none');
+							$('#eightHead').css('display','none');
+							$('#seventhBox').css('display','none');
+							$('#seventhHead').css('display','none');
+							$('#sixthBox').css('display','none');
+							$('#sixthHead').css('display','none');
+						}
+						else if(sem=="fourth")
+						{
+							$('#eightBox').css('display','none');
+							$('#eightHead').css('display','none');
+							$('#seventhBox').css('display','none');
+							$('#seventhHead').css('display','none');
+							$('#sixthBox').css('display','none');
+							$('#sixthHead').css('display','none');
+							$('#fifthBox').css('display','none');
+							$('#fifthHead').css('display','none');
+						}
+						else if(sem=="third")
+						{
+							$('#eightBox').css('display','none');
+							$('#eightHead').css('display','none');
+							$('#seventhBox').css('display','none');
+							$('#seventhHead').css('display','none');
+							$('#sixthBox').css('display','none');
+							$('#sixthHead').css('display','none');
+							$('#fifthBox').css('display','none');
+							$('#fifthHead').css('display','none');
+							$('#forthBox').css('display','none');
+							$('#forthHead').css('display','none');
+						}
+						else if(sem=="second")
+						{
+							$('#eightBox').css('display','none');
+							$('#eightHead').css('display','none');
+							$('#seventhBox').css('display','none');
+							$('#seventhHead').css('display','none');
+							$('#sixthBox').css('display','none');
+							$('#sixthHead').css('display','none');
+							$('#fifthBox').css('display','none');
+							$('#fifthHead').css('display','none');
+							$('#forthBox').css('display','none');
+							$('#forthHead').css('display','none');
+							$('#thirdBox').css('display','none');
+							$('#thirdHead').css('display','none');
+						}
+						else if(sem=="first")
+						{
+							$('#eightBox').css('display','none');
+							$('#eightHead').css('display','none');
+							$('#seventhBox').css('display','none');
+							$('#seventhHead').css('display','none');
+							$('#sixthBox').css('display','none');
+							$('#sixthHead').css('display','none');
+							$('#fifthBox').css('display','none');
+							$('#fifthHead').css('display','none');
+							$('#forthBox').css('display','none');
+							$('#forthHead').css('display','none');
+							$('#thirdBox').css('display','none');
+							$('#thirdHead').css('display','none');
+							$('#secondBox').css('display','none');
+							$('#secondHead').css('display','none');
+						}
+					});
+					var sem1=0,sem2=0,sem3=0,sem4=0,sem5=0,sem6=0,sem7=0,sem8=0;
+					$('#eightHead').click(function(){
+						if(sem8==0)
+						{
+							var url="http://trashit.hol.es/iNist/index.php?table=eight&roll="+localStorage.getItem("roll");
+							var table = document.getElementById("myTable8");
+							$.getJSON(url,function(result){
+							    $.each(result, function(i, field){
+								     // Pushing the JSON Data to the table
+								     //alert("test");
+								   	var ab = "<tr><td class='mdl-data-table__cell--non-numeric'>"+field.sub+"</td>" + 
+								       			"<td class='mdl-data-table__cell--non-numeric'>"+field.attend+"</td></tr>";
+								  	//alert(ab);
+								   	table.innerHTML +=ab;
+								});
+							});
+							sem8=1;
+						}
+					});
+					$('#seventhHead').click(function(){
+						if(sem7==0)
+						{
+							var url="http://trashit.hol.es/iNist/index.php?table=seventh&roll="+localStorage.getItem("roll");
+							var table = document.getElementById("myTable7");
+							//alert(url);
+							$.getJSON(url,function(result){
+							    $.each(result, function(i, field){
+								     // Pushing the JSON Data to the table
+								     //alert("test");
+								   	var ab = "<tr><td class='mdl-data-table__cell--non-numeric'>"+field.sub+"</td>" + 
+								       			"<td class='mdl-data-table__cell--non-numeric'>"+field.attend+"</td></tr>";
+								  	//alert(ab);
+								   	table.innerHTML +=ab;
+								});
+							});
+							sem7=1;
+						}
+							
+					});
+					$('#sixthHead').click(function(){
+						if(sem6==0)
+						{
+							var url="http://trashit.hol.es/iNist/index.php?table=sixth&roll="+localStorage.getItem("roll");
+							var table = document.getElementById("myTable6");
+							$.getJSON(url,function(result){
+							    $.each(result, function(i, field){
+								     // Pushing the JSON Data to the table
+								     //alert("test");
+								   	var ab = "<tr><td class='mdl-data-table__cell--non-numeric'>"+field.sub+"</td>" + 
+								       			"<td class='mdl-data-table__cell--non-numeric'>"+field.attend+"</td></tr>";
+								  	//alert(ab);
+								   	table.innerHTML +=ab;
+								});
+							});
+							sem6=1;
+						}
+					});
+					$('#fifthHead').click(function(){
+						if(sem5==0)
+						{
+							var url="http://trashit.hol.es/iNist/index.php?table=fifth&roll="+localStorage.getItem("roll");
+							var table = document.getElementById("myTable5");
+							$.getJSON(url,function(result){
+							    $.each(result, function(i, field){
+								     // Pushing the JSON Data to the table
+								     //alert("test");
+								   	var ab = "<tr><td class='mdl-data-table__cell--non-numeric'>"+field.sub+"</td>" + 
+								       			"<td class='mdl-data-table__cell--non-numeric'>"+field.attend+"</td></tr>";
+								  	//alert(ab);
+								   	table.innerHTML +=ab;
+								});
+							});
+							sem5=1;
+						}			
+					});
+					$('#fourthHead').click(function(){
+						if(sem4==0)
+						{
+							var url="http://trashit.hol.es/iNist/index.php?table=fourth&roll="+localStorage.getItem("roll");
+							var table = document.getElementById("myTable4");
+							$.getJSON(url,function(result){
+							    $.each(result, function(i, field){
+								     // Pushing the JSON Data to the table
+								     //alert("test");
+								   	var ab = "<tr><td class='mdl-data-table__cell--non-numeric'>"+field.sub+"</td>" + 
+								       			"<td class='mdl-data-table__cell--non-numeric'>"+field.attend+"</td></tr>";
+								  	//alert(ab);
+								   	table.innerHTML +=ab;
+								});
+							});
+							sem4=0;
+						}
+					});
+					$('#thirdHead').click(function(){
+						if(sem3==0)
+						{
+							var url="http://trashit.hol.es/iNist/index.php?table=third&roll="+localStorage.getItem("roll");
+							var table = document.getElementById("myTable3");
+							$.getJSON(url,function(result){
+							    $.each(result, function(i, field){
+								     // Pushing the JSON Data to the table
+								     //alert("test");
+								   	var ab = "<tr><td class='mdl-data-table__cell--non-numeric'>"+field.sub+"</td>" + 
+								       			"<td class='mdl-data-table__cell--non-numeric'>"+field.attend+"</td></tr>";
+								  	//alert(ab);
+								   	table.innerHTML +=ab;
+								});
+							});
+							sem3=1;
+						}
+					});
+					$('#secondHead').click(function(){
+						if(sem2==0)
+						{
+							var url="http://trashit.hol.es/iNist/index.php?table=second&roll="+localStorage.getItem("roll");
+							var table = document.getElementById("myTable2");
+							$.getJSON(url,function(result){
+							    $.each(result, function(i, field){
+								     // Pushing the JSON Data to the table
+								     //alert("test");
+								   	var ab = "<tr><td class='mdl-data-table__cell--non-numeric'>"+field.sub+"</td>" + 
+								       			"<td class='mdl-data-table__cell--non-numeric'>"+field.attend+"</td></tr>";
+								  	//alert(ab);
+								   	table.innerHTML +=ab;
+								});
+							});
+							sem2=1;
+						}
+					});
+					$('#firstHead').click(function(){
+						if(sem1==0)
+						{
+							var url="http://trashit.hol.es/iNist/index.php?table=first&roll="+localStorage.getItem("roll");
+							var table = document.getElementById("myTable1");
+							$.getJSON(url,function(result){
+							    $.each(result, function(i, field){
+								     // Pushing the JSON Data to the table
+								     //alert("test");
+								   	var ab = "<tr><td class='mdl-data-table__cell--non-numeric'>"+field.sub+"</td>" + 
+								       			"<td class='mdl-data-table__cell--non-numeric'>"+field.attend+"</td></tr>";
+								  	//alert(ab);
+								   	table.innerHTML +=ab;
+								});
+							});
+							sem1=1;
+						}
+					});	
+				</script>
+				<script type="text/javascript">
+			 		//var name="",status="";
+			 		
+					function snack(string) {
+					    var snackbarContainer = document.querySelector('#toast');
+					    var data = { message: string, timeout: 2000 };
+					    snackbarContainer.MaterialSnackbar.showSnackbar(data);
+					}
+					
+					//alert(num+" "+semis[num-1]);
+					$('#myGraph8').click(function(){
+						$('#table8').css('display','none');
+						$('#myGraph8').css('display','none');
+						$('#view8').css('display','block');
+						$('#mytable8').css('display','block');
+						$('#mytable8').click(function(){
+							$('#table8').css('display','block');
+							$('#myGraph8').css('display','block');
+							$('#view8').css('display','none');
+							$('#mytable8').css('display','none');
+						});
+						var url="http://trashit.hol.es/iNist/index.php?table=eight&roll="+localStorage.getItem("roll");
+					    var sub=[];
+					    var attend=[];
+					    $.getJSON(url,function(result){
+						       $.each(result, function(i, field){
+							       // Pushing the JSON Data to the array
+							       	sub.push(field.sub);
+							       	attend.push(field.attend);
+							     });
+						      //Assigning X and Y axes to the data var, and plotting the graph.
+						      	var data = [{
+								  x: sub,
+								  y: attend,
+								  type: 'bar'
+								}];
+
+								var annotationContent = [];
+								
+								var layout = {
+								  title: 'Current Sem Attendance',
+								  annotations: annotationContent
+								};
+								for( var i = 0 ; i < sub.length ; i++ ){
+								  var result = {
+								    x: sub[i],
+								    y: attend[i],
+								    text: attend[i],
+								    xanchor: 'center',
+								    yanchor: 'bottom',
+								    showarrow: false
+								  };
+								  annotationContent.push(result);
+								}
+
+ 								Plotly.newPlot('gra8', data,layout);
+						 });
+					});
+
+					$('#myGraph7').click(function(){
+						$('#table7').css('display','none');
+						$('#myGraph7').css('display','none');
+						$('#view7').css('display','block');
+						$('#mytable7').css('display','block');
+						$('#mytable7').click(function(){
+							$('#table7').css('display','block');
+							$('#myGraph7').css('display','block');
+							$('#view7').css('display','none');
+							$('#mytable7').css('display','none');
+						});
+						var url="http://trashit.hol.es/iNist/index.php?table=seventh&roll="+localStorage.getItem("roll");
+					    var sub=[];
+					    var attend=[];
+					     $.getJSON(url,function(result){
+						       $.each(result, function(i, field){
+							       // Pushing the JSON Data to the array
+							       	sub.push(field.sub);
+							       	attend.push(field.attend);
+							     });
+						      //Assigning X and Y axes to the data var, and plotting the graph.
+						      	var data = [{
+								  x: sub,
+								  y: attend,
+								  type: 'bar'
+								}];
+
+								var annotationContent = [];
+								
+								var layout = {
+								  title: 'Current Sem Attendance',
+								  annotations: annotationContent
+								};
+								for( var i = 0 ; i < sub.length ; i++ ){
+								  var result = {
+								    x: sub[i],
+								    y: attend[i],
+								    text: attend[i],
+								    xanchor: 'center',
+								    yanchor: 'bottom',
+								    showarrow: false
+								  };
+								  annotationContent.push(result);
+								}
+								
+ 								Plotly.newPlot('gra7', data,layout);
+						 });
+					});
+
+					$('#myGraph6').click(function(){
+						$('#table6').css('display','none');
+						$('#myGraph6').css('display','none');
+						$('#view6').css('display','block');
+						$('#mytable6').css('display','block');
+						$('#mytable6').click(function(){
+							$('#table6').css('display','block');
+							$('#myGraph6').css('display','block');
+							$('#view6').css('display','none');
+							$('#mytable6').css('display','none');
+						});
+						var url="http://trashit.hol.es/iNist/index.php?table=sixth&roll="+localStorage.getItem("roll");
+					    var sub=[];
+					    var attend=[];
+					     $.getJSON(url,function(result){
+						       $.each(result, function(i, field){
+							       // Pushing the JSON Data to the array
+							       	sub.push(field.sub);
+							       	attend.push(field.attend);
+							     });
+						      //Assigning X and Y axes to the data var, and plotting the graph.
+						      	var data = [{
+								  x: sub,
+								  y: attend,
+								  type: 'bar'
+								}];
+
+								var annotationContent = [];
+								
+								var layout = {
+								  title: 'Current Sem Attendance',
+								  annotations: annotationContent
+								};
+								for( var i = 0 ; i < sub.length ; i++ ){
+								  var result = {
+								    x: sub[i],
+								    y: attend[i],
+								    text: attend[i],
+								    xanchor: 'center',
+								    yanchor: 'bottom',
+								    showarrow: false
+								  };
+								  annotationContent.push(result);
+								}
+								
+								Plotly.newPlot('gra6', data,layout);
+						 });
+					});
+
+					$('#myGraph5').click(function(){
+						$('#table5').css('display','none');
+						$('#myGraph5').css('display','none');
+						$('#view5').css('display','block');
+						$('#mytable5').css('display','block');
+						$('#mytable5').click(function(){
+							$('#table5').css('display','block');
+							$('#myGraph5').css('display','block');
+							$('#view5').css('display','none');
+							$('#mytable5').css('display','none');
+						});
+						var url="http://trashit.hol.es/iNist/index.php?table=fifth&roll="+localStorage.getItem("roll");
+					    var sub=[];
+					    var attend=[];
+					    $.getJSON(url,function(result){
+						       $.each(result, function(i, field){
+							       // Pushing the JSON Data to the array
+							       	sub.push(field.sub);
+							       	attend.push(field.attend);
+							     });
+						      //Assigning X and Y axes to the data var, and plotting the graph.
+						      	var data = [{
+								  x: sub,
+								  y: attend,
+								  type: 'bar'
+								}];
+
+								var annotationContent = [];
+								
+								var layout = {
+								  title: 'Current Sem Attendance',
+								  annotations: annotationContent
+								};
+								for( var i = 0 ; i < sub.length ; i++ ){
+								  var result = {
+								    x: sub[i],
+								    y: attend[i],
+								    text: attend[i],
+								    xanchor: 'center',
+								    yanchor: 'bottom',
+								    showarrow: false
+								  };
+								  annotationContent.push(result);
+								}
+								
+ 								Plotly.newPlot('gra5', data,layout);
+						 });
+					});
+
+					$('#myGraph4').click(function(){
+						$('#table4').css('display','none');
+						$('#myGraph4').css('display','none');
+						$('#view4').css('display','block');
+						$('#mytable4').css('display','block');
+						$('#mytable4').click(function(){
+							$('#table4').css('display','block');
+							$('#myGraph4').css('display','block');
+							$('#view4').css('display','none');
+							$('#mytable4').css('display','none');
+						});
+						var url="http://trashit.hol.es/iNist/index.php?table=fourth&roll="+localStorage.getItem("roll");
+					    var sub=[];
+					    var attend=[];
+					     $.getJSON(url,function(result){
+						       $.each(result, function(i, field){
+							       // Pushing the JSON Data to the array
+							       	sub.push(field.sub);
+							       	attend.push(field.attend);
+							     });
+						      //Assigning X and Y axes to the data var, and plotting the graph.
+						      	var data = [{
+								  x: sub,
+								  y: attend,
+								  type: 'bar'
+								}];
+
+								var annotationContent = [];
+								
+								var layout = {
+								  title: 'Current Sem Attendance',
+								  annotations: annotationContent
+								};
+								for( var i = 0 ; i < sub.length ; i++ ){
+								  var result = {
+								    x: sub[i],
+								    y: attend[i],
+								    text: attend[i],
+								    xanchor: 'center',
+								    yanchor: 'bottom',
+								    showarrow: false
+								  };
+								  annotationContent.push(result);
+								}
+							
+ 								Plotly.newPlot('gra4', data,layout);
+						 });
+					});
+
+					$('#myGraph3').click(function(){
+						$('#table3').css('display','none');
+						$('#myGraph3').css('display','none');
+						$('#view3').css('display','block');
+						$('#mytable3').css('display','block');
+						$('#mytable3').click(function(){
+							$('#table3').css('display','block');
+							$('#myGraph3').css('display','block');
+							$('#view3').css('display','none');
+							$('#mytable3').css('display','none');
+						});
+						var url="http://trashit.hol.es/iNist/index.php?table=third&roll="+localStorage.getItem("roll");
+					    var sub=[];
+					    var attend=[];
+					     $.getJSON(url,function(result){
+						       $.each(result, function(i, field){
+							       // Pushing the JSON Data to the array
+							       	sub.push(field.sub);
+							       	attend.push(field.attend);
+							     });
+						      //Assigning X and Y axes to the data var, and plotting the graph.
+						      	var data = [{
+								  x: sub,
+								  y: attend,
+								  type: 'bar'
+								}];
+
+								var annotationContent = [];
+								
+								var layout = {
+								  title: 'Current Sem Attendance',
+								  annotations: annotationContent
+								};
+								for( var i = 0 ; i < sub.length ; i++ ){
+								  var result = {
+								    x: sub[i],
+								    y: attend[i],
+								    text: attend[i],
+								    xanchor: 'center',
+								    yanchor: 'bottom',
+								    showarrow: false
+								  };
+								  annotationContent.push(result);
+								}
+
+ 								Plotly.newPlot('gra3', data,layout);
+						 });
+					});
+
+					$('#myGraph2').click(function(){
+						$('#table2').css('display','none');
+						$('#myGraph2').css('display','none');
+						$('#view2').css('display','block');
+						$('#mytable2').css('display','block');
+						$('#mytable2').click(function(){
+							$('#table2').css('display','block');
+							$('#myGraph2').css('display','block');
+							$('#view2').css('display','none');
+							$('#mytable2').css('display','none');
+						});
+						var url="http://trashit.hol.es/iNist/index.php?table=second&roll="+localStorage.getItem("roll");
+					    var sub=[];
+					   var attend=[];
+					     $.getJSON(url,function(result){
+						       $.each(result, function(i, field){
+							       // Pushing the JSON Data to the array
+							       	sub.push(field.sub);
+							       	attend.push(field.attend);
+							     });
+						      //Assigning X and Y axes to the data var, and plotting the graph.
+						      	var data = [{
+								  x: sub,
+								  y: attend,
+								  type: 'bar'
+								}];
+
+								var annotationContent = [];
+								
+								var layout = {
+								  title: 'Current Sem Attendance',
+								  annotations: annotationContent
+								};
+								for( var i = 0 ; i < sub.length ; i++ ){
+								  var result = {
+								    x: sub[i],
+								    y: attend[i],
+								    text: attend[i],
+								    xanchor: 'center',
+								    yanchor: 'bottom',
+								    showarrow: false
+								  };
+								  annotationContent.push(result);
+								}
+ 								Plotly.newPlot('gra2', data,layout);
+						 });
+					});
+
+					$('#myGraph1').click(function(){
+						$('#table1').css('display','none');
+						$('#myGraph1').css('display','none');
+						$('#view1').css('display','block');
+						$('#mytable1').css('display','block');
+						$('#mytable1').click(function(){
+							$('#table1').css('display','block');
+							$('#myGraph1').css('display','block');
+							$('#view1').css('display','none');
+							$('#mytable1').css('display','none');
+						});
+						var url="http://trashit.hol.es/iNist/index.php?table=first&roll="+localStorage.getItem("roll");
+					    var sub=[];
+					    var attend=[];
+					     $.getJSON(url,function(result){
+						       $.each(result, function(i, field){
+							       // Pushing the JSON Data to the array
+							       	sub.push(field.sub);
+							       	attend.push(field.attend);
+							     });
+						      //Assigning X and Y axes to the data var, and plotting the graph.
+						      	var data = [{
+								  x: sub,
+								  y: attend,
+								  type: 'bar'
+								}];
+
+								var annotationContent = [];
+								
+								var layout = {
+								  title: 'Current Sem Attendance',
+								  annotations: annotationContent
+								};
+								for( var i = 0 ; i < sub.length ; i++ ){
+								  var result = {
+								    x: sub[i],
+								    y: attend[i],
+								    text: attend[i],
+								    xanchor: 'center',
+								    yanchor: 'bottom',
+								    showarrow: false
+								  };
+								  annotationContent.push(result);
+								}
+ 								Plotly.newPlot('gra1', data,layout);
+						 });
+					});
+
+					$("#logout").click(function(){
+						localStorage.setItem("login","False");
+						snack('Please Wait');
+						window.open("index.html","_self");
+					});
+
+					$("#homeGo").click(function(){
+						snack('Please Wait');
+						window.open("index.html","_self");
+					});
+				</script>
+	    	</center>
+	    </div>
+	  </main>
+	</div>
+</body>
+</html>

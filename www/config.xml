@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.ntcs.inist" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>iNist</name>
+    <description>
+       	This is the beta version of the iNist app!
+    </description>
+    <author email="sidh.rapid@gmail.com">
+        Sidharth Patnaik
+    </author>
+    <content src="index.html" />
+</widget>
